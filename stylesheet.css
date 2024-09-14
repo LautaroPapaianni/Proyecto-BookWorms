@@ -8,7 +8,8 @@ body {
 }
 
 /* Navbar container */
-nav {
+.navbar {
+    --navbar-color: #E2D2B8;
     height: 110px;
 }
 
@@ -19,4 +20,14 @@ nav {
 .nav-link {
     font-weight: bold;
     color: #472000;
+}
+
+.nav-item{
+    margin-left: 0%;
+}
+
+.form-control {
+    width: 400px;
+    position: relative;
+    right: 125px;
 }
