@@ -5,11 +5,10 @@
 
 body {
     background-color: #BAAB9B;
+    padding-top: 110px;
 }
 
-/* Navbar container */
 .navbar {
-    --navbar-color: #E2D2B8;
     height: 110px;
 }
 
@@ -22,12 +21,122 @@ body {
     color: #472000;
 }
 
-.nav-item{
-    margin-left: 0%;
+.navbar-brand{
+    text-shadow: 2px 2px 0 #73D997;
+    font-weight: bold;
 }
 
-.form-control {
-    width: 400px;
-    position: relative;
-    right: 125px;
+.search {
+display: flex;
+align-items: center;
+text-align: center;
+margin: auto;
 }
+
+.search__input {
+font-family: inherit;
+font-size: inherit;
+border: 1px solid #767676;
+color: #767676;
+padding: 5px 10px;
+border-radius: 4px;
+margin-right: -1.5rem;
+height: 30px;
+width: 30rem;
+}
+
+.search__input::-webkit-input-placeholder {
+font-weight: 400;
+color: #767676;
+}
+
+.search__button {
+border: none;
+background-color: #fff;
+margin-bottom: 0.1em;
+}
+
+.search__button:hover {
+cursor: pointer;
+}
+
+.search input:focus {
+outline: none;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidebar a {
+    padding: 9px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    display: none;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    display: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+    margin-left: 250px;
+  }
+  
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  
+  @media screen and (max-height: 450px) {
+    .sidebar {
+      padding-top: 15px;
+      width: 0;
+    }
+    .sidebar a {
+      font-size: 18px;
+    }
+    .openbtn {
+      display: block;
+    }
+    .sidebar .closebtn {
+      display: block;
+    }
+    #main {
+      margin-left: 0;
+    }
+  }
