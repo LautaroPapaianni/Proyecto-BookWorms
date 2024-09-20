@@ -1,0 +1,32 @@
+body{
+    background-image: url('img/libreria.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.search{
+    visibility: hidden;
+}
+
+.login-form, .register-form {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 50px;
+    outline: auto;
+    outline-color: white;
+    background-color: #52240D;
+}
+
+.form-label, .form-check-label{
+    color: beige;
+}
+
+.form-div{
+    margin: 10%;
+}
+
+.register-form-div{
+    margin: 5%;
+}
