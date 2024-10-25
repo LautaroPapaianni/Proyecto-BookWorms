@@ -13,18 +13,6 @@
 
 <body>
     <header>
-        <!-- <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-        </div>
-        <div id="main">
-            <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
-            <h2>Collapsed Sidebar</h2>
-            <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
-        </div> -->
         <nav class="navbar navbar-expand-md fixed-top" style="background-color: #e3f2fd;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">
@@ -47,6 +35,12 @@
                     ?>
                         <li class="nav-item">
                             <a href="logout.php" class="btn btn-warning">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link btn btn-primary">Publicar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary" href="perfil.php">Perfil</a>
                         </li>
                         <?php
                     }

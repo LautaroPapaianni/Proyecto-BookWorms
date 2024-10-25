@@ -15,7 +15,7 @@ body{
     margin-top: 50px;
     padding: 50px;
     outline: auto;
-    outline-color: white;
+    outline-color: #ca4d0f;
     background-color: #52240D;
 }
 
@@ -29,4 +29,8 @@ body{
 
 .register-form-div{
     margin: 5%;
+}
+
+.text-center {
+    color: white;
 }
