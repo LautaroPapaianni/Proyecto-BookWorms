@@ -4,7 +4,7 @@ if (isset($_SESSION["user"])) {
    header("Location: index.php");
 }
 include "header.php";
-include "database.php";
+include "php/database.php";
 ?>
 
 <head>
@@ -40,7 +40,7 @@ include "database.php";
                     echo "<div class='alert alert-danger'>$error</div>";
                 }
             }
-            require_once "database.php";
+            require_once "php/database.php";
             $sql = "SELECT * FROM usuarios WHERE email = '$email'";
             $result = mysqli_query($conn, $sql);
             $rowCount = mysqli_num_rows($result);

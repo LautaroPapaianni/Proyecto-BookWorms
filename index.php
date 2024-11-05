@@ -6,6 +6,7 @@ if (!isset($_SESSION["user"])) {
 include "header.php";
 ?>
 <title>BookWorms | Inicio</title>
+
 <?php
 include "footer.php";
 ?>

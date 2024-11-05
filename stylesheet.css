@@ -8,6 +8,20 @@ body {
     padding-top: 110px;
 }
 
+.perfil-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.caja{
+  background-color: #4F1E09;
+  border-radius: 15px;
+  width: 600px;
+  height: 500px;
+}
+
 .navbar {
     --bs-navbar-padding-y: 0;
 }

@@ -1,3 +1,9 @@
+<?php 
+include 'php/usuario.php';
+include 'php/database.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,15 +38,18 @@
                     <ul class="navbar-nav me-0 mb-2 mb-lg-0">
                         <?php
                     if (isset($_SESSION["user"])) {
+                        $user = getUserById($_SESSION['id_usuario'], $conn);
+
+
                     ?>
                         <li class="nav-item">
-                            <a href="logout.php" class="btn btn-warning">Logout</a>
+                            <a href="php/logout.php" class="btn btn-warning">Logout</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link btn btn-primary">Publicar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary" href="perfil.php">Perfil</a>
+                            <a class="nav-link btn btn-primary" href="perfil.php"><?=$user['nombre']?></a>
                         </li>
                         <?php
                     }

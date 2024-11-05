@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2024 a las 16:55:37
+-- Tiempo de generación: 05-11-2024 a las 16:01:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `archivos`
+--
+
+CREATE TABLE `archivos` (
+  `id_archivo` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `archivo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -31,22 +44,19 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `contrasenia` varchar(50) NOT NULL
+  `contrasenia` varchar(50) NOT NULL,
+  `foto_perfil` varchar(255) NOT NULL DEFAULT 'default-pp.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id_usuario`, `email`, `nombre`, `contrasenia`) VALUES
-(3, 'elcuco@ejemplo.com', 'chuco', '$2y$10$y2w0IgbWwpOrkhbPPlwVDeEuPCkhIFYGwACh9bnNKbA'),
-(4, 'elcuco@ejemplo2.com', 'Chuco', '$2y$10$aNQGdzkGHt/GWjOT8SMmUenOsaF/MosGT6BH4mi/ViD'),
-(5, 'elcuco@ejemplo3.com', 'asdawe', '$2y$10$Yr39SX0hwCKA1NMiM7ZwJeTFDyxkXt32TM7I80ofEOZ'),
-(6, 'elcuco@ejemplo4.com', 'asdawe', '123456789');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `archivos`
+--
+ALTER TABLE `archivos`
+  ADD PRIMARY KEY (`id_archivo`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -59,10 +69,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `archivos`
+--
+ALTER TABLE `archivos`
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
