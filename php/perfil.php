@@ -1,7 +1,7 @@
 <?php  
 session_start();
 
-if (isset($_SESSION['user'])) {
+if(isset($_POST['nombre'])){
 
     include "database.php";
 
@@ -10,13 +10,12 @@ if (isset($_SESSION['user'])) {
     $id = $_SESSION['id_usuario'];
 
     if (empty($nombre)) {
-    	$em = "Se requiere ingresar nombre";
+    	$em = "Es necesario un nombre";
     	header("Location: ../perfil.php?error=$em");
 	    exit;
     }else {
 
       if (isset($_FILES['foto_perfil']['name']) AND !empty($_FILES['foto_perfil']['name'])) {
-         
         
          $img_name = $_FILES['foto_perfil']['name'];
          $tmp_name = $_FILES['foto_perfil']['tmp_name'];
@@ -30,23 +29,19 @@ if (isset($_SESSION['user'])) {
             if(in_array($img_ex_to_lc, $allowed_exs)){
                $new_img_name = uniqid($nombre, true).'.'.$img_ex_to_lc;
                $img_upload_path = '../img/'.$new_img_name;
-               // Delete old profile pic
-               $old_foto_perfil_des = "../img/$foto_vieja";
-               if(unlink($old_foto_perfil_des)){
-               	  // just deleted
+               $old_pp_des = "../img/$foto_vieja";
+               if(unlink($old_pp_des)){
                	  move_uploaded_file($tmp_name, $img_upload_path);
                }else {
-                  // error or already deleted
                	  move_uploaded_file($tmp_name, $img_upload_path);
                }
                
-
-               // update the Database
                $sql = "UPDATE usuarios 
                        SET nombre=?, foto_perfil=?
                        WHERE id_usuario=?";
                $stmt = $conn->prepare($sql);
-               $stmt->execute([$nombre, $new_img_name, $id]);
+               $stmt->bind_param("ssi", $nombre, $new_img_name, $id);
+               $stmt->execute();
                $_SESSION['nombre'] = $nombre;
                header("Location: ../perfil.php?success=Your account has been updated successfully");
                 exit;
@@ -73,8 +68,9 @@ if (isset($_SESSION['user'])) {
    	    exit;
       }
     }
-}else {
-	header("Location: login.php");
-	exit;
-} 
 
+
+}else {
+	header("Location: ../perfil.php?error=error");
+	exit;
+}

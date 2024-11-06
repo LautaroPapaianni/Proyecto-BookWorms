@@ -49,7 +49,9 @@ include 'php/database.php';
                             <a href="#" class="nav-link btn btn-primary">Publicar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary" href="perfil.php"><?=$user['nombre']?></a>
+                            <a class="nav-link btn btn-primary" href="perfil.php"><img src="img/<?=$user['foto_perfil']?>"
+                 class="rounded-circle"
+                 style="width: 35px"><?=$user['nombre']?></a>
                         </li>
                         <?php
                     }
