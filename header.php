@@ -15,6 +15,9 @@ include 'php/database.php';
     <link href="stylesheet.css" rel="stylesheet">
     <link rel="icon" href="/Aplicaciones Interactivas/Proyecto BookWorms/img/BookWorms-favicon.png" sizes="128x128"
         type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
 </head>
 
 <body>
@@ -32,27 +35,36 @@ include 'php/database.php';
                 </button>
                 <div class="collapse navbar-collapse search-bar" id="navbarSupportedContent">
                     <div class="search">
-                        <input placeholder="Search..." type="text">
-                        <button type="submit">Go</button>
+                        <input placeholder="Search..." type="text" id="search-input">
+                        <button type="submit" id="search-btn">Go</button>
                     </div>
                     <ul class="navbar-nav me-0 mb-2 mb-lg-0">
                         <?php
                     if (isset($_SESSION["user"])) {
                         $user = getUserById($_SESSION['id_usuario'], $conn);
-
-
                     ?>
                         <li class="nav-item">
                             <a href="php/logout.php" class="btn btn-warning">Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link btn btn-primary">Publicar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary" href="perfil.php"><?=$user['nombre']?></a>
+                            <a href="publicar.php" class="nav-link btn btn-primary">Publicar</a>
                         </li>
                         <?php
-                    }
+                        if ($user['tipo_usuario'] == 0) {
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary" href="perfil.php"><img src="img/<?=$user['foto_perfil']?>"
+                 class="rounded-circle"
+                 style="width: 35px"><?=$user['nombre']?></a>
+                        </li>
+                        <?php
+                        }else{
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary" href="perfil.php">Admin</a>
+                        </li>
+                        <?php
+                    }}
                     ?>
                         <?php
                     if (!isset($_SESSION["user"])) {

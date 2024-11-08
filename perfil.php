@@ -5,7 +5,11 @@ if (isset($_SESSION['user'])) {
 include 'header.php';
 
 
+
  ?>
+
+<title>BookWorms | Perfil</title>
+
     <?php if ($user) { ?>
 
     <div class="perfil-form">
@@ -41,13 +45,13 @@ include 'header.php';
             <label class="form-label text-light">Profile Picture</label>
             <input type="file" 
                    class="form-control"
-                   name="pp">
-            <img src="upload/<?=$user['foto_perfil']?>"
+                   name="foto_perfil">
+            <img src="img/<?=$user['foto_perfil']?>"
                  class="rounded-circle"
                  style="width: 70px">
             <input type="text"
                    hidden="hidden" 
-                   name="old_pp"
+                   name="foto_vieja"
                    value="<?=$user['foto_perfil']?>" >
           </div>
           
