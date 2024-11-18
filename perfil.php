@@ -7,7 +7,9 @@ include 'header.php';
 
 
  ?>
-
+<head>
+  <link rel="stylesheet" href="no-search.css">
+</head>
 <title>BookWorms | Perfil</title>
 
     <?php if ($user) { ?>
