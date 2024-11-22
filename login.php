@@ -5,8 +5,6 @@ include "php/database.php";
 
 <head>
     <link href="login-register.css" rel="stylesheet">
-    <link rel="icon" href="/Aplicaciones Interactivas/Proyecto BookWorms/img/BookWorms-favicon.png" sizes="128x128"
-        type="image/x-icon">
 </head>
 <title>BookWorms | Iniciar sesion</title>
 

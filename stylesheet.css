@@ -17,7 +17,7 @@ body {
 
 .caja{
   background-color: #4F1E09;
-  border-radius: 15px;
+  border-radius: 15px; 
   width: 600px;
   height: 500px;
 }
@@ -85,7 +85,6 @@ body {
 }
 
 
-/* optional google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
 .container{
@@ -151,7 +150,6 @@ body {
     transform: scale(0.6);
     transition-duration: 0.2s;
 }
-/* we will use "drag-over-effect" class in js */
 .drag-over-effect div.col:first-child{
     opacity: 0;
     visibility: hidden;

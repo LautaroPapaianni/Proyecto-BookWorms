@@ -22,7 +22,6 @@ sessionStorage.setItem('formData',JSON.stringify(data));
 }
 
 $(document).ready(function() {
-    // Declarar table en el ámbito correcto
     var table = $('#archivosTable').DataTable({
         "ajax": {
             "url": "php/publicaciones.php",
@@ -37,14 +36,20 @@ $(document).ready(function() {
             { 
                 "data": null,
                 "render": function(data, type, row) {
-                    return `<a href="php/descargar.php?id=${row.id_archivo}" 
-                            class="btn btn-primary btn-sm download-btn" 
-                            data-id="${row.id_archivo}" 
-                            data-nombre="${row.titulo}">Descargar</a>`;
+                    // Comprobar si el ID del usuario que subió el archivo coincide con el ID del usuario en sesión
+                    var deleteButton = (row.id_usuario === idUsuarioSesion) ? 
+                        `<button class="btn btn-danger btn-sm delete-btn" data-id="${row.id_archivo}">Eliminar</button>` : 
+                        '';
+
+                    return `<a href="php/descargar.php?id=${row.id_archivo}" class="btn btn-primary btn-sm download-btn">Descargar</a>
+                            <button class="btn btn-secondary btn-sm preview-btn" data-id="${row.id_archivo}">Previsualizar</button>
+                            ${deleteButton}`;
                 }
             }
         ]
     });
+
+
     $('#archivosTable_filter').hide();
 
 
@@ -121,4 +126,62 @@ $(document).ready(function() {
 $('#clear-search-btn').on('click', function() {
     $('#search-input').val('');
     table.search('').draw();
+});
+$(document).on('click', '.preview-btn', function() {
+    var id = $(this).data('id');
+    var url = `php/descargar.php?id=${id}`; // Asegúrate de que esta URL sea correcta
+    
+    // Cargar el PDF en el iframe
+    $('#pdfViewer').attr('src', url);
+    
+    // Mostrar el modal
+    $('#pdfModal').modal('show');
+});
+$(document).on('click', '.delete-btn', function() {
+    var id = $(this).data('id');
+    
+    // Usar SweetAlert2 para la confirmación
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Este cambio no puede deshacerse.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si el usuario confirma, proceder a eliminar
+            $.ajax({
+                url: 'php/eliminar.php',
+                method: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    // Manejar la respuesta del servidor
+                    if (response.status === 'success') {
+                        Swal.fire(
+                            'Eliminado!',
+                            'El archivo ha sido eliminado.',
+                            'success'
+                        );
+                        location.reload();
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            'Error al eliminar el archivo: ' + response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire(
+                        'Error!',
+                        'Error en la solicitud: ' + error,
+                        'error'
+                    );
+                }
+            });
+        }
+    });
 });

@@ -48,9 +48,9 @@ if (empty($archivo['archivo'])) {
     die("El contenido del archivo está vacío");
 }
 
-// Establecer headers para forzar descarga
+// Establecer headers para mostrar el PDF en el navegador
 header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="' . $archivo['titulo'] . '"');
+header('Content-Disposition: inline; filename="' . $archivo['titulo'] . '"');
 header('Content-Length: ' . strlen($archivo['archivo']));
 header('Expires: 0');
 header('Cache-Control: must-revalidate');

@@ -5,7 +5,7 @@ include 'database.php';
 $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Modificar la consulta para incluir búsqueda
-$sql = "SELECT archivos.id_archivo, archivos.titulo, LENGTH(archivos.archivo) AS tamano, usuarios.nombre AS usuario
+$sql = "SELECT archivos.id_archivo, archivos.titulo, LENGTH(archivos.archivo) AS tamano, usuarios.nombre AS usuario, archivos.id_usuario
         FROM archivos
         INNER JOIN usuarios ON archivos.id_usuario = usuarios.id_usuario
         WHERE archivos.titulo LIKE ? OR usuarios.nombre LIKE ?";
@@ -22,7 +22,8 @@ while($row = $result->fetch_assoc()) {
         'id_archivo' => $row['id_archivo'],
         'titulo' => $row['titulo'],
         'tamano' => round($row['tamano'] / 1024, 2) . " KB",
-        'usuario' => $row['usuario']
+        'usuario' => $row['usuario'],
+        'id_usuario' => $row['id_usuario'] // Asegúrate de incluir el ID del usuario
     );
 }
 
